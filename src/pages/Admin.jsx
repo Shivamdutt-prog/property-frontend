@@ -44,7 +44,7 @@ function Admin() {
     // --- 2. AAPKA PROPERTIES FETCH FUNCTION ---
     const fetchProperties = async () => {
         try {
-            const response = await fetch(`http://${IP}:5000/properties`);
+            const response = await fetch("https://property-backend-of4t.onrender.com/properties");
             const data = await response.json();
             setProperties(data);
         } catch (err) {
@@ -69,7 +69,7 @@ function Admin() {
         dataToSend.append("image", formData.image);
 
         try {
-            const response = await fetch(`http://${IP}:5000/add-property`, {
+            const response = await fetch("https://property-backend-of4t.onrender.com/add-property", {
                 method: "POST",
                 body: dataToSend,
             });
