@@ -1,0 +1,415 @@
+import "../Home.css";
+import heroImg from "../assets/hero-img-2.jpeg";
+import {FaStar} from "react-icons/fa"
+import addressImg from "../assets/address.jpeg"
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+function Home() {
+  const [properties, setProperties] = useState([]);
+
+ 
+
+  const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  message: "",
+});
+
+const handleChange = (e) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
+  });
+};
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+const response = await fetch("https://property-backend-of4t.onrender.com/send-email", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(formData),
+});
+
+  if (response.ok) {
+    alert("Message Sent Successfully");
+
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+    });
+  } else {
+    alert("Failed To Send");
+  }
+};
+
+useEffect(() => {
+
+  fetch("http://172.20.10.6:5000/properties")
+    .then((res) => res.json())
+    .then((data) => setProperties(data));
+
+}, []);
+  return(
+    <>
+    <div className="hero">
+
+      {/* LEFT */}
+      <div className="hero-left">
+        <h1>Easiest way to get your <span className="dream">dream</span> <span className="hero-home">home</span></h1>
+        <p>Find best properties with us. Buy, sell and invest smartly.</p>
+
+        <div className="hero-buttons">
+      <Link to="/contact">
+  <button className="btn-primary">
+    Contact Us
+  </button>
+</Link>
+
+<Link to="/properties">
+  <button className="btn-secondary">
+    View Projects
+  </button>
+</Link>
+       </div>
+         <div className="mini-card">
+        <img src={addressImg} alt="Location"/>
+        <div>
+          <h4>Our Location</h4>
+          <p>Panipat , Haryana</p>
+        </div>
+      </div>
+      </div>
+
+      {/* RIGHT */}
+      <div className="hero-right">
+
+        <div className="image-box">
+          <img src={heroImg} alt="property" className="hero-img" />
+          <h2 className="premium"><ul>
+            <li>Premium Properties In Haryana</li>
+            <li>Your Dream Home Await</li>
+            <li>Panipat's Trusted Property Dealer</li>
+            </ul></h2>
+        </div>
+        <div className="stats">
+
+          <div className="stat">
+          <h3>2k+</h3>
+          <p> Property Diliverd</p>
+          </div>
+
+        <div className="stat">
+          <h3>2k+</h3>
+          <p>Happy Clients</p>
+         </div>
+
+        <div className="stat">
+          <h3>4.5 <FaStar style={{color: "#d4af37"}}/></h3>
+          <p>Star ratings</p>
+        </div>
+
+        </div>
+      </div>
+      
+      </div>
+      <section className="services">
+
+  <div className="services-heading">
+    <p>WHAT WE OFFER</p>
+    <h2>
+      Our <span>Premium</span> Services
+    </h2>
+
+    <h5>
+      End to end real estate solutions tailored for your lifestyle.
+    </h5>
+  </div>
+
+  <div className="services-grid">
+
+    <div className="service-card">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" />
+
+      <h3>Architectural Design</h3>
+
+      <p>
+        Modern and luxury architectural designs for dream homes.
+      </p>
+
+      <Link to="/architecture">
+  <button>Read More</button>
+</Link>
+    </div>
+
+    <div className="service-card">
+      <img src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=1200&auto=format&fit=crop" />
+
+      <h3>Smart Home Solutions</h3>
+
+      <p>
+        Advanced automation and smart living solutions.
+      </p>
+
+      <Link to="/smarthome">
+      <button>Read More</button>
+      </Link>
+    </div>
+
+    <div className="service-card">
+      <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop" />
+
+      <h3>Interior Design</h3>
+
+      <p>
+        Premium interior solutions for luxury spaces.
+      </p>
+
+      <Link to="/interior">
+  <button>Read More</button>
+</Link>
+    </div>
+
+  </div>
+</section>
+<section className="properties">
+
+  <div className="properties-heading">
+    <p>FEATURED PROPERTIES</p>
+
+    <h2>
+      Our <span>Luxury</span> Projects
+    </h2>
+  </div>
+<section className="projects">
+
+ 
+
+  <div className="property-container">
+
+    {properties.map((item) => (
+      <div className="property-card" key={item.id}>
+        <img
+  src={item.image}
+  alt={item.title}
+  className="property-image"
+/>
+
+        <h2>{item.title}</h2>
+
+<p>{item.location}</p>
+
+<h3>{item.price}</h3>
+
+<Link to={`/property/${item._id}`} className="details-btn">
+  View Details
+</Link>
+
+      </div>
+    ))}
+
+  </div>
+
+</section>
+  
+
+ 
+</section>
+
+{/* ABOUT SECTION */}
+
+<section className="about">
+
+  <div className="about-left">
+    <img
+      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop"
+      alt=""
+    />
+  </div>
+
+  <div className="about-right">
+
+    <p className="about-tag">ABOUT US</p>
+
+    <h2>
+      Trusted <span>Real Estate</span> Company
+    </h2>
+
+    <p className="about-text">
+      We provide premium real estate solutions in Panipat with modern
+      architecture, luxury interiors and trusted property consultation.
+    </p>
+
+    <div className="about-boxes">
+
+      <div className="about-box">
+        <h3>10+</h3>
+        <p>Years Experience</p>
+      </div>
+
+      <div className="about-box">
+        <h3>2000+</h3>
+        <p>Happy Clients</p>
+      </div>
+
+      <div className="about-box">
+        <h3>120+</h3>
+        <p>Projects Completed</p>
+      </div>
+
+    </div>
+
+    <Link to="/about">
+  <button className="about-btn">
+    Know More
+  </button>
+</Link>
+
+  </div>
+
+</section>
+{/* WHY CHOOSE US */}
+
+<section className="choose">
+
+  <p className="choose-tag">WHY CHOOSE US</p>
+
+  <h2 className="why-clients">
+    Why Clients <span>Trust Us</span>
+  </h2>
+
+  <div className="choose-container">
+
+    <div className="choose-card">
+      <h3>Trusted Dealer</h3>
+
+      <p>
+        100% genuine and trusted property consultation in Panipat.
+      </p>
+    </div>
+
+    <div className="choose-card">
+      <h3>Premium Properties</h3>
+
+      <p>
+        Luxury villas, apartments and commercial spaces available.
+      </p>
+    </div>
+
+    <div className="choose-card">
+      <h3>Best Pricing</h3>
+
+      <p>
+        Affordable and transparent pricing with no hidden charges.
+      </p>
+    </div>
+
+    <div className="choose-card">
+      <h3>24/7 Support</h3>
+
+      <p>
+        Our team is always ready to help you anytime.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+<section className="contact">
+
+  <p className="contact-tag">CONTACT US</p>
+
+  <h2 className="h2-contact">
+    Get In <span>Touch</span>
+  </h2>
+
+  <div className="contact-container">
+
+    <div className="contact-info">
+      <h3>Dutt Property Mavens</h3>
+
+      <p>📍 Panipat, Haryana</p>
+      <p>📞 +91 9034021217</p>
+      <p>📧 duttpropertymavens@gmail.com</p>
+    </div>
+
+    <form className="contact-form" onSubmit={handleSubmit}>
+
+      <input
+  type="text"
+  name="name"
+  value={formData.name}
+  onChange={handleChange}
+  placeholder="Your Name"
+/>
+
+      <input
+  type="email"
+  name="email"
+  value={formData.email}
+  onChange={handleChange}
+  placeholder="Your Email"
+/>
+
+      <textarea
+  name="message"
+  value={formData.message}
+  onChange={handleChange}
+  placeholder="Your Message"
+></textarea>
+
+     <button>Send Message</button>
+
+    </form>
+
+  </div>
+
+</section>
+<footer className="footer">
+
+  <div className="footer-container">
+
+    <div className="footer-box">
+      <h2>Dutt <span>Property</span> <span>Mavens</span></h2>
+
+      <p>
+        Premium real estate solutions in Panipat with modern luxury
+        designs and trusted consultation.
+      </p>
+    </div>
+
+  <div className="footer-box">
+  <h3>Quick Links</h3>
+
+  <Link to="/">Home</Link>
+  <Link to="/services">Services</Link>
+  <Link to="/properties">Projects</Link>
+  <Link to="/about">About</Link>
+  <Link to="/agents">Agents</Link>
+</div>
+
+    <div className="footer-box">
+      <h3>Contact Info</h3>
+
+      <p>📍 Panipat, Haryana</p>
+      <p>📞 +91 9034021217</p>
+      <p><span>📧</span>duttpropertymavens@gmail.com</p>
+    </div>
+
+  </div>
+
+  <div className="footer-bottom">
+    © 2026 Dutt Property Mavens | All Rights Reserved
+  </div>
+
+</footer>
+
+    </>
+  )
+}
+
+export default Home;

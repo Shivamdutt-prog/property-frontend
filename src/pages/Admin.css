@@ -1,0 +1,146 @@
+.admin-container{
+  min-height: 100vh;
+  background: #0f172a;
+  padding: 40px;
+  color: white;
+}
+
+.admin-title{
+  font-size: 50px;
+  margin-bottom: 30px;
+  color: #facc15;
+}
+
+.admin-form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 400px;
+}
+
+.admin-form input{
+  padding: 15px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.admin-form button{
+  padding: 15px;
+  border: none;
+  background: #facc15;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.admin-form button:hover{
+  background: orange;
+}
+
+.properties-title{
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 40px;
+  color: #facc15;
+}
+
+.property-card{
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  width: 350px;
+}
+
+.property-card img{
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.property-card h3{
+  margin-top: 15px;
+  font-size: 28px;
+}
+
+.property-card p{
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+.delete-btn{
+  margin-top: 15px;
+  padding: 12px 20px;
+  border: none;
+  background: red;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.delete-btn:hover{
+  background: darkred;
+}
+.admin-form textarea{
+  width: 100%;
+  max-width: 540px;
+  height: 140px;
+  padding: 15px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  font-size: 16px;
+  margin-top: 10px;
+  resize: none;
+  background: white;
+  color: #222;
+}
+/* --- MOBILE RESPONSIVE MEDIA QUERY --- */
+@media screen and (max-width: 768px) {
+    
+    /* Poore container ki padding kam karenge */
+    .admin-container {
+        padding: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Form ko mobile ke hisab se scale karenge */
+    .admin-form {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    /* Input fields ko screen ke andar fit karenge */
+    .admin-form input, 
+    .admin-form textarea {
+        width: 100% !important;   /* 100% width se ye screen ke andar rahega */
+        box-sizing: border-box;   /* Padding ko andar maintain rakhega */
+        font-size: 16px;          /* Mobile typing ke liye perfect size */
+        margin: 0 auto;
+    }
+
+    /* File uploader ko thoda space denge */
+    .admin-form input[type="file"] {
+        padding: 5px 0;
+    }
+
+    /* Add Property wale button ko sahi karenge */
+    .admin-form button {
+        width: 100% !important;
+        padding: 12px;
+        font-size: 16px;
+    }
+}

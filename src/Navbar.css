@@ -1,0 +1,99 @@
+.nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 60px;
+    background: black;
+    color: white;
+}
+#estate{
+    color: #d4af37;
+}
+.nav-links{
+    display: flex;
+    gap: 30px;
+    margin: 0 auto;
+    justify-content: center;
+    flex: 1;
+}
+.nav-links a{
+    color: #aaa;
+    text-decoration: none;
+}
+.nav-links a:hover{
+    color: white;
+}
+.auth{
+    display: flex;
+    gap: 12px;
+    
+}
+.signin{
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.signin:hover{
+    background-color: white;
+    color: black;
+}
+.signup{
+   padding: 8px 18px;
+   border-radius: 6px;
+   border: none;
+   background: linear-gradient(135deg, #2b7fff, #0552cc);
+   color: white;
+   font-weight: 500;
+   cursor: pointer;
+   transition: 0.3s;
+}
+.signup:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(43,127,255,0.4);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.logo span {
+  color: #2b7fff;
+}
+
+.icon {
+  font-size: 20px;
+  color:#d4af37;
+  position: relative;
+  top: 2px;
+}
+@media (max-width:768px){
+
+  .navbar{
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+    padding:15px !important;
+    
+  }
+
+  .nav-links{
+    display:none !important;
+  }
+
+  .nav-buttons{
+    display:none !important;
+  }
+
+}
