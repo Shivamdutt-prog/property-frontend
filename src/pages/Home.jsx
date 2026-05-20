@@ -25,11 +25,9 @@ const handleChange = (e) => {
 const handleSubmit = async (e) => {
     e.preventDefault();
 
-   const data = new FormData();
+    // Yeh automatic dabbo se 'name' utha lega bina kisi state mismatch ke
+    const data = new FormData(e.target);
     data.append("access_key", "7dfa2a33-de17-450e-a61b-9a843bb70d85");
-    data.append("name", formData.name);
-    data.append("email", formData.email);
-    data.append("message", formData.message);
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
