@@ -10,7 +10,7 @@ function PropertyDetails() {
 
   useEffect(() => {
 
-    fetch(`http://172.20.10.6:5000/property/${id}`)
+    fetch(`https://property-backend-of4t.onrender.com/property/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProperty(data.property);

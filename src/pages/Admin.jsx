@@ -17,7 +17,7 @@ function Admin() {
     });
 
     // Aapka Network IP
-    const IP = "172.20.10.6"; 
+    const IP = "property-backend-of4t.onrender.com";
 
     // --- 1. ADMIN LOGIN FUNCTION ---
     const handleLoginSubmit = async (e) => {

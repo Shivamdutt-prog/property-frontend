@@ -49,7 +49,7 @@ const response = await fetch("https://property-backend-of4t.onrender.com/send-em
 
 useEffect(() => {
 
-  fetch("http://172.20.10.6:5000/properties")
+  fetch("https://property-backend-of4t.onrender.com/properties")
     .then((res) => res.json())
     .then((data) => setProperties(data));
 
