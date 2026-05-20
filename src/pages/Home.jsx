@@ -25,7 +25,7 @@ const handleChange = (e) => {
 const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = new FormData();
+   const data = new FormData();
     data.append("access_key", "7dfa2a33-de17-450e-a61b-9a843bb70d85");
     data.append("name", formData.name);
     data.append("email", formData.email);
