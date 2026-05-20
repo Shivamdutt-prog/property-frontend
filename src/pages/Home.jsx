@@ -16,36 +16,37 @@ function Home() {
   message: "",
 });
 
-const handleChange = (e) => {
-  setFormData({
-    ...formData,
-    [e.target.name]: e.target.value,
-  });
-};
-
 const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-const response = await fetch("https://property-backend-of4t.onrender.com/send-email", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(formData),
-});
+    const data = new FormData();
+    data.append("access_key", "7dfa2a33-de17-450e-a61b-9a843bb70d85");
+    data.append("name", formData.name);
+    data.append("email", formData.email);
+    data.append("message", formData.message);
 
-  if (response.ok) {
-    alert("Message Sent Successfully");
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data
+      });
 
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
-  } else {
-    alert("Failed To Send");
-  }
-};
+      const result = await response.json();
+
+      if (result.success) {
+        alert("Message Sent Successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          message: ""
+        });
+      } else {
+        alert("Failed To Send");
+      }
+    } catch (error) {
+      alert("Server Error!");
+    }
+  };
 
 useEffect(() => {
 
