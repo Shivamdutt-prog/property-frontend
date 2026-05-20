@@ -66,7 +66,7 @@ function Admin() {
         dataToSend.append("price", formData.price);
         dataToSend.append("location", formData.location);
         dataToSend.append("description", formData.description);
-        dataToSend.append("image", formData.image);
+       dataToSend.append("img", formData.image);
 
         try {
             const response = await fetch("https://property-backend-of4t.onrender.com/add-property", {
