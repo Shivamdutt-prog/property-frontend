@@ -90,7 +90,7 @@ function Admin() {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this property?")) {
             try {
-                const response = await fetch(`https://property-backend-sf4t.onrender.com/delete-property/${id}`, {
+                const response = await fetch(`https://property-backend-of4t.onrender.com/delete-property/${id}`,{
                     method: "DELETE"
                 });
                 if (response.ok) {
