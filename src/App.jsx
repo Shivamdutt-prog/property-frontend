@@ -15,7 +15,7 @@ import Apartment from "./pages/Apartment";
 import Office from "./pages/Office";
 import Admin from "./pages/Admin";
 import PropertyDetails from "./pages/PropertyDetails";
-
+import ForgetPassword from './pages/ForgetPassword';
 
 function App (){
   return (
@@ -41,6 +41,7 @@ function App (){
 <Route path="/office" element={<Office />} />
 <Route path="/admin" element={<Admin />} />
 <Route path="/property/:id" element={<PropertyDetails />} />
+<Route path="/forget-password" element={<ForgetPassword />} />
   
     </Routes>
     </BrowserRouter>

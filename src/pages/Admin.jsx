@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; 
 import './Admin.css'; // Aapki CSS file
 
 function Admin() {
@@ -143,6 +144,20 @@ function Admin() {
                             style={{ padding: '12px', borderRadius: '5px', border: '1px solid #34495e', background: '#111d2c', color: 'white', fontSize: '16px', boxSizing: 'border-box' }}
                             required
                         />
+                        <Link 
+    to="/forget-password" 
+    style={{ 
+        color: '#f1c40f', 
+        textAlign: 'right', 
+        fontSize: '13px', 
+        marginTop: '5px', 
+        marginBottom: '15px',
+        textDecoration: 'none',
+        display: 'block'
+    }}
+>
+    Forget Password?
+</Link>
                         <button type="submit" style={{ padding: '12px', background: '#f1c40f', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold', fontSize: '16px', color: '#111', marginTop: '10px' }}>
                             Secure Login
                         </button>
