@@ -8,13 +8,8 @@ const ForgetPassword = () => {
     const [step, setStep] = useState(1); 
     const navigate = useNavigate();
 
- // 1. OTP Bhejne ka function
-  const handleSendOTP = async (e) => {
+const handleSendOTP = async (e) => {
     e.preventDefault();
-    
-    // Client ko bina rukaawat ke agle step par bhejo taaki dabba turant khul jaye
-    setStep(2); 
-
     try {
       const res = await fetch('https://property-backend-of4t.onrender.com/forgot-password', {
         method: 'POST',
@@ -24,15 +19,16 @@ const ForgetPassword = () => {
       
       const data = await res.json();
       
-      // Agar backend se sach me true response aaya, toh chupchap console me track karo
       if (data.success) {
-        console.log("Backend response:", data.message);
+        // Yeh alert client ko phone par hi dikha dega: "Test Mode: Aapka OTP yeh hai: XXXXXX"
+        alert(data.message); 
+        setStep(2); // Dabba khul jayega
       } else {
-        console.log("Backend warning:", data.message);
+        alert(data.message);
       }
     } catch (err) {
-      // Background me connectivity issue ho toh console me error dikhao, client ko pareshan mat karo
-      console.log("Network background log:", err);
+      // Agar backend bilkul hi nahi chala, toh bhi safety ke liye step 2 khol do
+      setStep(2);
     }
   };
 
