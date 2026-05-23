@@ -59,14 +59,15 @@ const handleSendOTP = async (e) => {
             
             {step === 1 ? (
                 <form onSubmit={handleSendOTP} style={{ display: 'flex', flexDirection: 'column', gap: '15px', width: '300px' }}>
-                    <input 
-                        type="email" 
-                        placeholder="Apni Admin Email Dalein" 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
-                        required 
-                        style={{ padding: '12px', borderRadius: '5px', border: '1px solid #333', backgroundColor: '#222', color: '#fff' }}
-                    />
+        
+<input
+    /* NAYA VALA (Isko daal do) */
+    type="text"
+    placeholder="Apna Admin WhatsApp Number Dalein"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    required
+/>
                     <button type="submit" style={{ padding: '12px', cursor: 'pointer', backgroundColor: '#f1c40f', color: '#000', fontWeight: 'bold', border: 'none', borderRadius: '5px' }}>Send OTP</button>
                 </form>
             ) : (
