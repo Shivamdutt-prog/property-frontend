@@ -8,26 +8,33 @@ const ForgetPassword = () => {
     const [step, setStep] = useState(1); 
     const navigate = useNavigate();
 
-    // 1. OTP Bhejne ka function
-    const handleSendOTP = async (e) => {
-        e.preventDefault();
-        try {
-            const res = await fetch('https://property-backend-of4t.onrender.com/forgot-password', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            });
-            const data = await res.json();
-            if (data.success) {
-                alert(data.message);
-                setStep(2); 
-            } else {
-                alert(data.message);
-            }
-        } catch (err) {
-            alert("Server se connect nahi ho paya bhai!");
-        }
-    };
+ // 1. OTP Bhejne ka function
+  const handleSendOTP = async (e) => {
+    e.preventDefault();
+    
+    // Client ko bina rukaawat ke agle step par bhejo taaki dabba turant khul jaye
+    setStep(2); 
+
+    try {
+      const res = await fetch('https://property-backend-of4t.onrender.com/forgot-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      
+      const data = await res.json();
+      
+      // Agar backend se sach me true response aaya, toh chupchap console me track karo
+      if (data.success) {
+        console.log("Backend response:", data.message);
+      } else {
+        console.log("Backend warning:", data.message);
+      }
+    } catch (err) {
+      // Background me connectivity issue ho toh console me error dikhao, client ko pareshan mat karo
+      console.log("Network background log:", err);
+    }
+  };
 
     // 2. Password Reset karne ka function
     const handleResetPassword = async (e) => {
