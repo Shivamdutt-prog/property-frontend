@@ -12,7 +12,7 @@ const ForgetPassword = () => {
     const handleSendOTP = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('https://property-backend-of4t.onrender.com/forget-password', {
+            const res = await fetch('https://property-backend-of4t.onrender.com/forgot-password', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email })
