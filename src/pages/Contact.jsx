@@ -22,7 +22,7 @@ function Contact() {
       </p>
 
       <p style={{ fontSize: "20px" }}>
-        📧 duttproperty@gmail.com
+        📧 duttpropertymavens@gmail.com
       </p>
     </div>
   );
