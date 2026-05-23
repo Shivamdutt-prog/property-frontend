@@ -1,4 +1,17 @@
+import { useState, useEffect } from "react";
+
 function Property() {
+  // 1. State jisme backend se aane wali saari properties save hongi
+  const [properties, setProperties] = useState([]);
+
+  // 2. useEffect jo Render backend se saara data lekar aayega
+  useEffect(() => {
+    fetch("https://property-backend-of4t.onrender.com/properties")
+      .then((res) => res.json())
+      .then((data) => setProperties(data))
+      .catch((err) => console.error("Error fetching properties:", err));
+  }, []);
+
   return (
     <div
       style={{
@@ -28,10 +41,10 @@ function Property() {
         }}
       >
         Explore our premium collection of luxury villas, modern apartments,
-        commercial offices, and dream homes available in top locations across
-        India.
+        commercial offices, and dream homes available in top locations across India.
       </p>
 
+      {/* Container jisme saare cards dynamic show honge */}
       <div
         style={{
           display: "flex",
@@ -39,189 +52,64 @@ function Property() {
           flexWrap: "wrap",
         }}
       >
+        {properties.length > 0 ? (
+          properties.map((item) => (
+            <div
+              key={item._id}
+              style={{
+                width: "300px",
+                background: "#1a1a1a",
+                border: "1px solid orange",
+                borderRadius: "15px",
+                overflow: "hidden",
+              }}
+            >
+              <img
+                // Agar item me image ka link hai toh woh aayega, nahi toh fallback image dikhegi
+                src={item.image || "https://images.unsplash.com/photo-144863060428-65456885c650?w=600"}
+                alt={item.title || "Property"}
+                style={{
+                  width: "100%",
+                  height: "222px",
+                  objectFit: "cover",
+                }}
+              />
 
-        {/* CARD 1 */}
-        <div
-          style={{
-            width: "300px",
-            background: "#1a1a1a",
-            border: "1px solid orange",
-            borderRadius: "15px",
-            overflow: "hidden",
-          }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1448630360428-65456885c650?w=600"
-            alt=""
-            style={{
-              width: "100%",
-              height: "220px",
-              objectFit: "cover",
-            }}
-          />
+              <div style={{ padding: "20px" }}>
+                <h2 style={{ color: "orange", margin: "0 0 10px 0" }}>
+                  {item.title}
+                </h2>
+                <p style={{ margin: "0 0 10px 0", color: "#ccc" }}>
+                  {item.location}
+                </p>
+                <h3 style={{ margin: "0 0 15px 0" }}>
+                  {/* Agar price me text h jaise '1.2 CR' ya number, dono chalega */}
+                  ₹{item.price}
+                </h3>
 
-          <div style={{ padding: "20px" }}>
-            <h2 style={{ color: "orange" }}>Luxury Villa</h2>
-            <p>Panipat</p>
-            <h3>₹90 Lac</h3>
-
-          <button
-  onClick={() => {
-    alert(
-      "Luxury Villa\n\nLocation: Panipat\nPrice: ₹90 Lac"
-    );
-  }}
-  style={{
-    marginTop: "15px",
-    padding: "10px 20px",
-    background: "orange",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-    position: "relative",
-    zIndex: "10"
-  }}
->
-  View Details
-</button>
-          </div>
-        </div>
-
-        {/* CARD 2 */}
-        <div
-          style={{
-            width: "300px",
-            background: "#1a1a1a",
-            border: "1px solid orange",
-            borderRadius: "15px",
-            overflow: "hidden",
-          }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1494526585095-c41746248156?w=600"
-            alt=""
-            style={{
-              width: "100%",
-              height: "220px",
-              objectFit: "cover",
-            }}
-          />
-
-          <div style={{ padding: "20px" }}>
-            <h2 style={{ color: "orange" }}>Modern Flat</h2>
-            <p>Delhi</p>
-            <h3>₹45 Lac</h3>
-
-            <button
-  onClick={() => {
-    alert(
-      "Modern Flat\n\nLocation: Delhi\nPrice: ₹45 Lac\n2 Bedrooms\n1 Bathroom"
-    );
-  }}
-  style={{
-    marginTop: "15px",
-    padding: "10px 20px",
-    background: "orange",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-  }}
->
-  View Details
-</button>
-          </div>
-        </div>
-
-        {/* CARD 3 */}
-        <div
-          style={{
-            width: "300px",
-            background: "#1a1a1a",
-            border: "1px solid orange",
-            borderRadius: "15px",
-            overflow: "hidden",
-          }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600"
-            alt=""
-            style={{
-              width: "100%",
-              height: "220px",
-              objectFit: "cover",
-            }}
-          />
-
-          <div style={{ padding: "20px" }}>
-            <h2 style={{ color: "orange" }}>Office Space</h2>
-            <p>Gurgaon</p>
-            <h3>₹1.2 Cr</h3>
-
-     <button
-  onClick={() => {
-    alert(
-      "Office Space\n\nLocation: Gurgaon\nPrice: ₹1.2 Cr\nFully Furnished Office\nParking Available"
-    );
-  }}
-  style={{
-    marginTop: "15px",
-    padding: "10px 20px",
-    background: "orange",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-  }}
->
-  View Details
-</button>
-          </div>
-        </div>
-
-        {/* CARD 4 */}
-        <div
-          style={{
-            width: "300px",
-            background: "#1a1a1a",
-            border: "1px solid orange",
-            borderRadius: "15px",
-            overflow: "hidden",
-          }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600"
-            alt=""
-            style={{
-              width: "100%",
-              height: "220px",
-              objectFit: "cover",
-            }}
-          />
-
-          <div style={{ padding: "20px" }}>
-            <h2 style={{ color: "orange" }}>Dream House</h2>
-            <p>Mumbai</p>
-            <h3>₹2.5 Cr</h3>
-
-        <button
-  onClick={() => {
-    alert(
-      "Dream House\n\nLocation: Mumbai\nPrice: ₹2.5 Cr\n3 Bedrooms\n2 Bathrooms\nLuxury Interior"
-    );
-  }}
-  style={{
-    marginTop: "15px",
-    padding: "10px 20px",
-    background: "orange",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-  }}
->
-  View Details
-</button>
-          </div>
-        </div>
-
+                <button
+                  onClick={() => {
+                    alert(`${item.title}\nLocation: ${item.location}\nPrice: ${item.price}`);
+                  }}
+                  style={{
+                    background: "orange",
+                    color: "black",
+                    border: "none",
+                    padding: "10px 15px",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    fontWeight: "bold",
+                  }}
+                >
+                  View Details
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          // Agar database me abhi koi data load nahi hua ya empty h
+          <p style={{ color: "#aaa" }}>Loading properties or database is empty...</p>
+        )}
       </div>
     </div>
   );
