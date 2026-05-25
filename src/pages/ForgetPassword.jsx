@@ -74,7 +74,7 @@ function ForgotPasswordPage() {
                             type="tel" 
                             placeholder="Enter 10-Digit WhatsApp Number" 
                             value={phone} 
-                            maxLength="10"
+                            maxLength="13"
                             required 
                             onChange={(e) => setPhone(e.target.value)}
                             style={{ padding: '12px', borderRadius: '5px', border: '1px solid #34495e', background: '#111d2c', color: 'white' }}
