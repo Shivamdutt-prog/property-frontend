@@ -16,7 +16,9 @@ function ForgotPasswordPage() {
         e.preventDefault();
         setStatusMessage('Sending OTP...');
         try {
-            const response = await fetch(`https://${IP}/admin-forgot-password`, {
+            const serverURL = "http://localhost:5000"; // https://${IP}
+            
+            const response = await fetch(`${serverURL}/admin-forgot-password`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username: phone }) // Backend me username ke naam se phone number jayega
@@ -39,10 +41,11 @@ function ForgotPasswordPage() {
     const handleResetPassword = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`https://${IP}/admin-reset-password`, {
+            const serverURL = "http://localhost:5000"; // https://${IP}
+            const response = await fetch(`${serverURL}/admin-reset-password`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ otp, newPassword })
+                body: JSON.stringify({ otp, newPassword, username: phone })
             });
             const result = await response.json();
 
@@ -89,6 +92,16 @@ function ForgotPasswordPage() {
                 {step === 2 && (
                     <form onSubmit={handleResetPassword} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                         <p style={{ color: '#2ecc71', fontSize: '13px', margin: 0 }}>✔️ OTP aapke WhatsApp number par bhej diya h</p>
+                       
+                       <input 
+                            type="tel" 
+                            placeholder="Enter 10-Digit WhatsApp Number" 
+                            value={phone} 
+                            maxLength="13"
+                            required 
+                            onChange={(e) => setPhone(e.target.value)}
+                            style={{ padding: '12px', borderRadius: '5px', border: '1px solid #34495e', background: '#111d2c', color: 'white' }}
+                        />
                         <input 
                             type="text" 
                             placeholder="Enter 4-Digit OTP" 
